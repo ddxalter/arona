@@ -65,4 +65,4 @@ Timer::Records Timer::records_;
 
 } // namespace arona
 
-#endif // ARONA_ARONA_H_
+#endif // ARONA_TIMER_H_
