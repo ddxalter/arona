@@ -29,7 +29,7 @@ public:
   }
   static void clear()
   {
-    records.clear();
+    records_.clear();
   }
   static std::time_t now()
   {
