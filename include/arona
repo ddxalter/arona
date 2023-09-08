@@ -5,5 +5,6 @@
 #include"format.h"
 #include"timer.h"
 #include"logger.h"
+#include"factory.h"
 
 #endif // ARONA_ARONA_
