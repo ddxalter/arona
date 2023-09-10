@@ -13,7 +13,7 @@ namespace arona {
 //  2. register derived to the factory.
 //    MyFactory::Register<MyDerived> myderived_reg("myderived_name_to_create");
 //  3. create instance.
-//    MyBase* foo = MyFactory::create("myderived_name_to_create");
+//    MyBase* foo = MyFactory::create("myderived_name_to_create", arg1, arg2);
 
 template<class Base, class ... Args>
 class Factory
