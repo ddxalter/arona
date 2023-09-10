@@ -40,7 +40,7 @@ public:
   {
     if(registry().find(key) == registry().end())
     {
-      std::runtime_error("arona::Factory::create: key '" + key + "' does not exist.");
+      throw std::runtime_error("arona::Factory::create: key '" + key + "' does not exist.");
     }
     return registry()[key](std::forward<Args>(args) ...);
   }
