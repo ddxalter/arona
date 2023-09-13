@@ -112,7 +112,7 @@ inline const char* to_value<const char*>(const std::string& s) noexcept
 template<>
 inline bool to_value<bool>(const std::string& s) noexcept
 {
-  return s == "1" || s == "true";
+  return s == "true";
 }
 
 } // namespace arona

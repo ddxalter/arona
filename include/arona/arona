@@ -1,10 +1,11 @@
 #ifndef ARONA_ARONA_
 #define ARONA_ARONA_
 
-#include"progress.h"
-#include"format.h"
-#include"timer.h"
-#include"logger.h"
-#include"factory.h"
+#include"arona/progress.h"
+#include"arona/format.h"
+#include"arona/timer.h"
+#include"arona/logger.h"
+#include"arona/factory.h"
+#include"arona/random.h"
 
 #endif // ARONA_ARONA_

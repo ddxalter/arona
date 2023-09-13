@@ -10,49 +10,48 @@ namespace arona {
 class Logger
 {
 public:
-  Logger(const std::string path, const bool append, const bool use_cerr)
-    : ofs(path, openmode(append))
-    , use_cerr(use_cerr)
+  using OpenMode = unsigned long;
+  static constexpr OpenMode Append = 1ul << 0;
+  static constexpr OpenMode Trunc = 1ul << 1;
+  static constexpr OpenMode UseCerr = 1ul << 2;
+  Logger(const std::string& path, const OpenMode mode = Append)
+    : ofs_(path, std::ios_base::out | ((Append & mode) ? std::ios_base::app : 0) | ((Trunc & mode) ? std::ios_base::trunc : 0))
+    , use_cerr_(UseCerr & mode)
   {
-  }
-  Logger(const std::string path, const std::string mode = "ae")
-    : ofs(path, openmode(mode))
-    , use_cerr(contains(mode, "e"))
-  {
+    if(!ofs_.is_open())
+    {
+      throw std::runtime_error("arona::Logger: failed to open a log file '" + path + "'.");
+    }
   }
   ~Logger()
   {
-    ofs.close();
+    if(ofs_.is_open())
+    {
+      ofs_.close();
+    }
   }
   template<class T>
   inline Logger& operator<<(const T& x)
   {
-    if(use_cerr) std::cerr << x;
-    ofs << x;
+    if(use_cerr_)
+    {
+      std::cerr << x;
+    }
+    ofs_ << x;
     return *this;
   }
   Logger& operator<<(std::ostream& (*io)(std::ostream&))
   {
-    if(use_cerr) io(std::cerr);
-    io(ofs);
+    if(use_cerr_)
+    {
+      io(std::cerr);
+    }
+    io(ofs_);
     return *this;
   }
 private:
-  template<typename T>
-  inline bool contains(const std::string& str, const T& c)
-  {
-    return str.find(c) != std::string::npos;
-  }
-  inline std::ios_base::openmode openmode(const bool append)
-  {
-    return (append ? std::ios_base::app : std::ios_base::trunc) | std::ios_base::out;
-  }
-  inline std::ios_base::openmode openmode(const std::string& mode)
-  {
-    return openmode(contains(mode, 'a'));
-  }
-  std::ofstream ofs;
-  bool use_cerr;
+  std::ofstream ofs_;
+  bool use_cerr_;
 };
 
 } // namespace arona

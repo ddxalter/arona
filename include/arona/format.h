@@ -6,8 +6,9 @@
 
 namespace arona {
 
-struct Format
+class Format
 {
+public:
   std::string fmt;
   
   Format() = default;
