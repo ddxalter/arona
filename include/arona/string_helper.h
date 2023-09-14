@@ -6,7 +6,7 @@
 
 namespace arona {
 
-std::vector<std::string> split(const std::string& str, const std::string& sep) noexcept
+inline std::vector<std::string> split(const std::string& str, const std::string& sep) noexcept
 {
   std::vector<std::string> result;
   std::string::size_type pos = 0;
@@ -20,7 +20,7 @@ std::vector<std::string> split(const std::string& str, const std::string& sep) n
   return result;
 }
 
-std::vector<std::string> split_skipping(const std::string& from_str, const std::string& by_chars) noexcept
+inline std::vector<std::string> split_skipping(const std::string& from_str, const std::string& by_chars) noexcept
 {
   std::vector<std::string> result;
   std::string::size_type pos = 0;
@@ -37,26 +37,26 @@ std::vector<std::string> split_skipping(const std::string& from_str, const std::
   return result;
 }
 
-std::string ltrim_all(const std::string& from_str, const std::string& by_chars) noexcept
+inline std::string ltrim_all(const std::string& from_str, const std::string& by_chars) noexcept
 {
   std::string::size_type pos = from_str.find_first_not_of(by_chars);
   return pos != std::string::npos ? from_str.substr(pos) : "";
 }
 
-std::string rtrim_all(const std::string& from_str, const std::string& by_chars) noexcept
+inline std::string rtrim_all(const std::string& from_str, const std::string& by_chars) noexcept
 {
   std::string::size_type pos = from_str.find_last_not_of(by_chars);
   return pos != std::string::npos ? from_str.substr(0, pos + 1) : "";
 }
 
-std::string trim_all(const std::string& from_str, const std::string& by_chars) noexcept
+inline std::string trim_all(const std::string& from_str, const std::string& by_chars) noexcept
 {
   std::string::size_type pos = from_str.find_first_not_of(by_chars);
   return pos != std::string::npos ? from_str.substr(pos, from_str.find_last_not_of(by_chars) - pos + 1) : "";
 }
 
 template<class T>
-std::string join(const std::string& sep, const T& strs) noexcept
+inline std::string join(const std::string& sep, const T& strs) noexcept
 {
   std::string result;
   for(std::size_t i = 0; i < strs.size(); ++i)

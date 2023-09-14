@@ -13,8 +13,8 @@ struct Progress
   const int f; // fill
   const bool r; // need reprint or not
 };
-    
-std::ostream& operator << (std::ostream& stream, Progress&& p)
+
+inline std::ostream& operator << (std::ostream& stream, Progress&& p)
 {
   if(p.r)
   {
