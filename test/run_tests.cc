@@ -6,6 +6,9 @@ extern void test_random();
 extern void test_logger();
 
 extern void test_string_helper();
+
+extern void test_dataframe();
+
 int main()
 {
   test_initialize();
@@ -15,6 +18,7 @@ int main()
   test_random();
   test_logger();
   test_string_helper();
+  test_dataframe();
   
   test_finalize();
 }
