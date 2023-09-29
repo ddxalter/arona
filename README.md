@@ -1,4 +1,4 @@
-# aronacpp
+# arona
 C++ header only library
 
 ## Tests

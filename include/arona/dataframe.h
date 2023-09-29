@@ -4,7 +4,8 @@
 #include<cstddef>
 #include<vector>
 #include<tuple>
-#include<iostream>
+#include<istream>
+#include<ostream>
 #include<sstream>
 #include<type_traits>
 
@@ -34,6 +35,10 @@ public:
     RowType row = table_.back();
     table_.pop_back();
     return row;
+  }
+  void clear()
+  {
+    TableType().swap(table_);
   }
   RowType& operator[](std::size_t i)
   {
